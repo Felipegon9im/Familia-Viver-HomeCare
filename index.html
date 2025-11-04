@@ -277,22 +277,26 @@
                 {
                     image: "https://raw.githubusercontent.com/Felipegon9im/Familia-Viver-HomeCare/main/Gemini_Generated_Image_k4l0bck4l0bck4l0.png",
                     title: "Cuidando de quem você ama, como se fosse da nossa família.",
-                    subtitle: "Oferecemos cuidados domiciliares humanizados e profissionais, garantindo conforto, segurança e dignidade no seu lar."
+                    subtitle: "Oferecemos cuidados domiciliares humanizados e profissionais, garantindo conforto, segurança e dignidade no seu lar.",
+                    mobilePosition: 'bg-center'
                 },
                 {
                     image: "https://raw.githubusercontent.com/Felipegon9im/Familia-Viver-HomeCare/main/Gemini_Generated_Image_r891swr891swr891.png",
                     title: "Profissionalismo e Carinho em Cada Gesto.",
-                    subtitle: "Nossa equipe é formada por profissionais qualificados e dedicados a oferecer o melhor cuidado."
+                    subtitle: "Nossa equipe é formada por profissionais qualificados e dedicados a oferecer o melhor cuidado.",
+                    mobilePosition: 'bg-right'
                 },
                 {
                     image: "https://raw.githubusercontent.com/Felipegon9im/Familia-Viver-HomeCare/main/Gemini_Generated_Image_7kezxh7kezxh7kez.png",
                     title: "O Conforto do Lar com a Segurança que Você Precisa.",
-                    subtitle: "Adaptamos nossos serviços às necessidades individuais de cada paciente, promovendo bem-estar."
+                    subtitle: "Adaptamos nossos serviços às necessidades individuais de cada paciente, promovendo bem-estar.",
+                    mobilePosition: 'bg-center'
                 },
                 {
                     image: "https://raw.githubusercontent.com/Felipegon9im/Familia-Viver-HomeCare/main/Gemini_Generated_Image_8g91wj8g91wj8g91.png",
                     title: "Uma Extensão da Sua Família.",
-                    subtitle: "Construímos uma relação de confiança e proximidade, levando tranquilidade para você e seus entes queridos."
+                    subtitle: "Construímos uma relação de confiança e proximidade, levando tranquilidade para você e seus entes queridos.",
+                    mobilePosition: 'bg-right'
                 }
             ];
             
@@ -323,11 +327,11 @@
 
 
           return (
-            <section id="home" className="relative h-screen flex items-center justify-center text-white overflow-hidden">
+            <section id="home" className="relative h-[65vh] md:h-screen flex items-end pb-24 md:items-center md:pb-0 justify-center text-white overflow-hidden">
                 {slides.map((slide, index) => (
                     <div
                         key={index}
-                        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out"
+                        className={`absolute inset-0 bg-cover ${slide.mobilePosition} md:bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out`}
                         style={{ backgroundImage: `url('${slide.image}')`, opacity: index === currentSlide ? 1 : 0 }}
                     ></div>
                 ))}
@@ -590,6 +594,31 @@
               </div>
             </section>
           );
+        };
+
+        const CallToAction = () => {
+            const handleScrollToContact = (e) => {
+                e.preventDefault();
+                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            return (
+                <section className="bg-primary text-white py-20">
+                <div className="container mx-auto px-6 text-center">
+                    <h2 className="text-4xl font-bold font-serif mb-4">Pronto para dar o próximo passo?</h2>
+                    <p className="text-lg max-w-2xl mx-auto mb-8 text-slate-200">
+                        Permita-nos mostrar como podemos oferecer o melhor cuidado para sua família. Solicite um orçamento sem compromisso.
+                    </p>
+                    <a 
+                    href="#contact" 
+                    onClick={handleScrollToContact} 
+                    className="bg-accent text-white font-bold py-4 px-10 rounded-full text-lg hover:brightness-95 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
+                    >
+                    Solicitar Orçamento
+                    </a>
+                </div>
+                </section>
+            );
         };
         
         // --- From components/Testimonials.tsx ---
@@ -914,6 +943,7 @@
                 <CareShowcase />
                 <Services />
                 <MissionVisionValues />
+                <CallToAction />
                 <Testimonials />
                 <Contact />
               </main>
